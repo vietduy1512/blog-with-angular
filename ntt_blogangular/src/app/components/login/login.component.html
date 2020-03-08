@@ -1,0 +1,42 @@
+<div class="container">
+
+  <!-- TODO: Validation https://stackblitz.com/angular/lndkmpkdnmj?file=src%2Fapp%2Freactive%2Fhero-form-reactive.component.html -->
+  <div [hidden]="submitted">
+    <h2>Login</h2>
+    <hr />
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-4">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" formControlName="username" required >
+
+        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="alert alert-danger">
+          <div *ngIf="username.errors.required">
+            Username is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" required >
+        
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="alert alert-danger">
+          <div *ngIf="password.errors.required">
+            Password is required.
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" formControlName="grant_type"/>
+
+      <button type="submit" class="btn btn-success mb-5" [disabled]="loginForm.invalid">Submit</button>
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>You have sent request</h2>
+    <h4>Please wait a moment...</h4>
+  </div>
+</div>

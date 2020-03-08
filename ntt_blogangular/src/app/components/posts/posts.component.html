@@ -1,0 +1,50 @@
+<h3 class="my-4">
+    Danh sách các Post
+</h3>
+
+<!-- Blog Post -->
+<div *ngFor="let post of posts" class="card blog-post-black blog-post-no-hover mb-4">
+    <a routerLink="/detail/{{post.Id}}/{{post.Slug}}">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Post Thumbnail -->
+                <div *ngIf="post.ImagePath">
+                    <img class="card-img-top" src="{{post.ImagePath}}" alt="Card image cap">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- Post Content -->
+                <div class="card-body">
+                    <h5 class="card-title">{{post.Title}}</h5>
+                    <p class="card-text"><small>{{post.Description}}</small></p>
+
+                </div>
+            </div>
+        </div>
+    </a>
+    <!-- Post Meta -->
+    <div class="card-footer text-muted">
+            Posted on {{post.Date | date:'dd/MM/yyyy - hh:mm a'}} by
+            <div class="lead">
+                <div *ngIf="post.Author">
+                    <a href="#">{{post.Author.UserName}}</a>
+                </div>
+                <div *ngIf="!post.Author">
+                    <a>Anonymous</a>
+                </div>
+            </div>
+    </div>
+</div>
+
+<!-- Paging -->
+
+<div class="row mb-4">
+    <div *ngIf="page > 1" class="col-md-2">
+        <a class="btn btn-outline-secondary" routerLink="/posts/page/{{page - 1}}" role="button">Prev</a>
+    </div>
+    <div *ngIf="posts" class="col-md-2">
+        <div *ngIf="posts.length == 5">
+            <a class="btn btn-outline-secondary" routerLink="/posts/page/{{page + 1}}" role="button">Next</a>
+        </div>
+    </div>
+</div>

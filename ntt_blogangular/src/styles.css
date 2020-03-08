@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+.blog-post-black h1,
+.blog-post-black h2,
+.blog-post-black h3,
+.blog-post-black h4,
+.blog-post-black h5,
+.blog-post-black h6,
+.blog-post-black a,
+.blog-post-black p {
+    color: black !important;
+}
+.blog-post-no-hover a:hover,
+.blog-post-no-hover p:hover {
+    opacity: 0.7;
+    text-decoration: none !important;
+}

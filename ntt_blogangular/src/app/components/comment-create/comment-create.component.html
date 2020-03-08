@@ -1,0 +1,22 @@
+<!-- Comments Form -->
+<div class="card my-4" *ngIf="auth.isAuthenticated">
+  <h5 class="card-header">Leave a Comment:</h5>
+  <div class="card-body">
+    <!--
+      Content
+      hidden UserId
+      hidden PostId
+    -->
+    <form [formGroup]="newCommentForm" (ngSubmit)="onSubmit()" class="">
+
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea rows="3" type="text" class="form-control" formControlName="content" required ></textarea>
+      </div>
+
+      <input type="hidden" class="form-control" formControlName="postId" required/>
+
+      <button type="submit" class="btn btn-primary">Post comment</button>
+    </form>
+  </div>
+</div>

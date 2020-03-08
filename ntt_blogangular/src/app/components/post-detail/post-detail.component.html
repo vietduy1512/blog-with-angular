@@ -1,0 +1,41 @@
+<div *ngIf="post">
+  <!-- Title -->
+  <h1 class="mt-4">{{post.Title}}</h1>
+
+  <!-- Author -->
+  <div class="lead">
+    by
+    <div *ngIf="post.Author">
+      <a href="#">{{post.Author.UserName}}</a>
+    </div>
+    <div *ngIf="!post.Author">
+      <a>Anonymous</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Date/Time -->
+  <p>Posted on {{post.Date | date:'dd/MM/yyyy - hh:mm a'}}</p>
+
+  <hr>
+
+  <!-- Preview Image -->
+  <img class="img-fluid rounded" src="{{post.ImagePath}}" alt="Cover Image">
+
+  <hr>
+
+  <!-- Post Content -->
+  <div class="post-content">
+      <div innerHTML="{{post.Content}}"></div>
+  </div>
+
+  <!-- Delete Button -->
+  <button type="button" *ngIf="auth.isAuthenticated" class="btn btn-outline-danger" (click)="onDelete()">Delete</button>
+  <hr />
+  
+  <app-comment-create [postId]="post.Id"></app-comment-create>
+  <app-comments [comments]="comments"></app-comments>
+</div>
+
+

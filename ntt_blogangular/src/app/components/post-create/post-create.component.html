@@ -1,0 +1,71 @@
+<div class="container">
+    <div [hidden]="submitted">
+      <h2>Create Post</h2>
+      <hr />
+      <!-- TODO: Validation https://stackblitz.com/angular/lndkmpkdnmj?file=src%2Fapp%2Freactive%2Fhero-form-reactive.component.html -->
+      <!--
+        Title
+        ImagePath
+        Description
+        Content
+        hidden Date
+        hidden AuthorId
+      -->
+      <form [formGroup]="newPostForm" (ngSubmit)="onSubmit($event);" class="mt-4">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" formControlName="title" required >
+  
+          <div *ngIf="title.invalid && (title.dirty || title.touched)"
+              class="alert alert-danger">
+            <div *ngIf="title.errors.required">
+              Title is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="uploaded_image">Thumbnail</label>
+          <div class="form-control">
+            <input type="file"  id="uploaded_image" name="uploaded_image" required
+              (change)="fileChange($event)" accept="image/*" >
+
+            <img *ngIf="previewImage" class="preview-image rounded mx-auto d-block mt-3" [src]="previewImage">
+          </div>
+          
+          <!-- TODO: add Validation -->
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" formControlName="description" required >
+  
+          <div *ngIf="description.invalid && (description.dirty || description.touched)"
+              class="alert alert-danger">
+            <div *ngIf="description.errors.required">
+              Description is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="content">Content</label>
+          <ckeditor type="text" class="form-control p-0" formControlName="content" required ></ckeditor>
+  
+          <div *ngIf="content.invalid && (content.dirty || content.touched)"
+              class="alert alert-danger">
+            <div *ngIf="content.errors.required">
+              Content is required.
+            </div>
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-success mb-5" [disabled]="newPostForm.invalid">Submit</button>
+      </form>
+    </div>
+
+    <div [hidden]="!submitted">
+      <h2>You have sent request</h2>
+      <h4>Please wait a moment...</h4>
+    </div>
+  </div>

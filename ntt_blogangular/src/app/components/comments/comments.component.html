@@ -1,0 +1,19 @@
+<!-- Comment Area Start -->
+<div id="lvd-comment" class="mb-5">
+  <!-- Single Comment -->
+  <div *ngFor="let comment of comments" class="media pt-5">
+    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+    <div class="media-body">
+        <h5 class="my-0">
+            <div *ngIf="comment.User != null">
+                <a>{{comment.User.UserName}}</a>
+            </div>
+            <div *ngIf="comment.User == null">
+                <a>Anonymous</a>
+            </div>
+        </h5>
+        <small class="mt-0"><span class="badge badge-secondary mt-0">{{comment.Date | date:'dd/MM/yyyy'}}</span></small><br/>
+        {{comment.Content}}
+    </div>
+  </div>
+</div>
